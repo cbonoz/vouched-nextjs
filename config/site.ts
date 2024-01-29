@@ -3,6 +3,7 @@ export type SiteConfig = typeof siteConfig
 export const siteConfig = {
   name: "Vouched",
   description: "Coming Soon: A modern referral network",
+  slogan: "Discover talented hires endorsed by people you trust",
   mainNav: [
     {
       title: "Home",

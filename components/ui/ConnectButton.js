@@ -12,7 +12,7 @@ function ConnectButton({ buttonType = "primary" }) {
       <SignedOut>
         {/* Signed out users get sign in button */}
         <div>
-          <SignInButton>
+          <SignInButton redirectUrl="/profile">
             <Button style={{ display: "block" }} type={buttonType}>
               Sign in
             </Button>

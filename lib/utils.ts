@@ -65,10 +65,7 @@ export const humanError = (err) => {
   let message = err.message || JSON.stringify(err)
 
   if (message.indexOf("404") !== -1) {
-    message =
-      "Dataset not found. Do you have the correct url? Otherwise, try creating a new dataset."
-  } else if (message.indexOf("network changed") !== -1) {
-    message = "Network changed since page loaded, please refresh."
+    message = "Server not reachable. Please try again later."
   } else if (message.indexOf("Network Error") !== -1) {
     message = "Could not connect to server. Please try again later."
   }

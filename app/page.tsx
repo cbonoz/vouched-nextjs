@@ -1,9 +1,12 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { Toaster } from "@/components/ui/toaster"
+import RequestInvite from "@/components/request-invite"
 
 export default function IndexPage() {
   return (
@@ -13,8 +16,7 @@ export default function IndexPage() {
           {siteConfig.description}
         </h1>
         <p className="max-w-[700px] text-lg text-muted-foreground">
-          Accessible and customizable components that you can copy and paste
-          into your apps. Free. Open Source. And Next.js 13 Ready.
+          {siteConfig.slogan}
         </p>
       </div>
       <div className="flex gap-4">
@@ -28,13 +30,7 @@ export default function IndexPage() {
         ))}
       </div>
       <div className="flex gap-4">
-        <Button
-          onClick={() => alert("Request invite")}
-          className={buttonVariants({ variant: "default" })}
-        >
-          Request invite
-        </Button>
-
+        <RequestInvite />
         {/* <Link
           target="_blank"
           rel="noreferrer"
@@ -45,7 +41,10 @@ export default function IndexPage() {
         </Link> */}
       </div>
 
-      <div className="flex max-w-[980px] flex-col  gap-2">yo</div>
+      <div className="flex max-w-[980px] flex-col  gap-2">
+        {/* <Image src="/static/hero.png" width={980} height={500} alt="hero" /> */}
+      </div>
+      <Toaster />
     </section>
   )
 }
