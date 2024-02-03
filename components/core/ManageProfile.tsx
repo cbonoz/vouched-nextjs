@@ -8,6 +8,7 @@ import { capitalize, humanError, isEmpty, profileUrl } from "@/lib/utils"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import { Checkbox } from "../ui/checkbox"
+import BasicCard from "./BasicCard"
 
 const ManageProfile = () => {
   const { isSignedIn, user, isLoaded } = useUser()
@@ -77,12 +78,12 @@ const ManageProfile = () => {
 
   return (
     <div>
-      <div className="text-xl">Manage account</div>
-
-      <div className="flex items-center space-x-2">
-        <Checkbox id="terms" />
-        <Label htmlFor="terms">Accept terms and conditions</Label>
-      </div>
+      <BasicCard title="Manage account">
+        <div className="flex items-center space-x-2">
+          <Checkbox id="terms" />
+          <Label htmlFor="terms">Accept terms and conditions</Label>
+        </div>
+      </BasicCard>
     </div>
   )
 }

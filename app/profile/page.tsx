@@ -6,6 +6,7 @@ import { Separator } from "@radix-ui/react-menubar"
 
 import { capitalize, humanError, isEmpty, profileUrl } from "@/lib/utils"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import InviteUser from "@/components/core/InviteUser"
 import ManageProfile from "@/components/core/ManageProfile"
 
 const ProfileSettings = () => {
@@ -27,11 +28,12 @@ const ProfileSettings = () => {
           <TabsTrigger value="manage">Manage account</TabsTrigger>
           <TabsTrigger value="invite">Invite user to Vouched</TabsTrigger>
         </TabsList>
-        <Separator />
         <TabsContent value="manage">
           <ManageProfile />
         </TabsContent>
-        <TabsContent value="invite">{/* <InviteUser /> */}</TabsContent>
+        <TabsContent value="invite">
+          <InviteUser />
+        </TabsContent>
       </Tabs>
     </div>
   )

@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Endorsement from "@/components/core/Endorsement"
+import Vouch from "@/components/core/Vouch"
 import { createDemoProfile } from "@/app/constants/placeholder"
 
 import useAuthAxios from "../../../hooks/useAuthAxios"
@@ -109,7 +110,10 @@ export default function ProfilePage({ params }: Props) {
                   })}
               </div>
             </TabsContent>
-            <TabsContent value="vouch">{/* <InviteUser /> */}</TabsContent>
+            <TabsContent value="vouch">
+              <Vouch targetUser={user} />
+              {/* <InviteUser /> */}
+            </TabsContent>
           </Tabs>
         </div>
       </div>
