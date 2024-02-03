@@ -2,7 +2,11 @@ import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 
 import { Button } from "@/components/ui/button"
 
-function ConnectButton({ buttonType = "primary" }) {
+function ConnectButton({
+  buttonType = "submit",
+}: {
+  buttonType?: "submit" | "reset" | "button" | undefined
+}) {
   return (
     <div className="connect-button">
       <SignedIn>

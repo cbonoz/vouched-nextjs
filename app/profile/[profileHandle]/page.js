@@ -1,13 +1,12 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import Image from "next/image"
-import { useRouter } from "next/router"
 
-import { APP_NAME, DEMO_PROFILE } from "../../constants"
-import useAuthAxios from "../../hooks/useAuthAxios"
-import EndorsementRow from "../../lib/EndorsementRow"
-import { formatDate } from "../../util"
+import { getNameFromUser } from "@/lib/utils"
+import { Skeleton } from "@/components/ui/skeleton"
+import { DEMO_PROFILE, createDemoProfile } from "@/app/constants/placeholder"
+
+import useAuthAxios from "../../../hooks/useAuthAxios"
 
 export default function ProfilePage({ params }) {
   const { profileHandle } = params
@@ -17,21 +16,21 @@ export default function ProfilePage({ params }) {
   const [error, setError] = useState()
   const { getProfile } = useAuthAxios()
 
-  async function fetchProfile() {
-    setLoading(true)
-    try {
-      const data = await getProfile(profileHandle, type)
-      setProfile(data)
-    } catch (err) {
-      console.error("error getting proflile, using default", err)
-      // setError(err.message)
-      setProfile(DEMO_PROFILE)
-    } finally {
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
+    async function fetchProfile() {
+      setLoading(true)
+      try {
+        const data = await getProfile(profileHandle, type)
+        setProfile(data)
+      } catch (err) {
+        console.error("error getting proflile, using default", err)
+        // setError(err.message)
+        setProfile(createDemoProfile(profileHandle))
+      } finally {
+        setLoading(false)
+      }
+    }
+
     fetchProfile()
   }, [profileHandle])
 
@@ -40,84 +39,45 @@ export default function ProfilePage({ params }) {
   }
 
   if (loading || !profile) {
-    return <Spin />
+    return (
+      <div>
+        Loading...
+        <div>
+          <div className="flex items-center space-x-4">
+            <Skeleton className="h-12 w-12 rounded-full" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-[250px]" />
+              <Skeleton className="h-4 w-[200px]" />
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   const { user, endorsements } = profile
 
+  if (!user) {
+    return <div>Profile not found</div>
+  }
+
   const isYou = user.firstName.indexOf("John") !== -1 // TODO:
   const userName = `${user.firstName} ${user.lastName} ${isYou ? "(you)" : ""}`
 
-  const cardTitle = userName ?? "User profile"
-  const breadcrumbs = [
-    {
-      title: "Home",
-      href: "/",
-    },
-    {
-      title: cardTitle,
-      href: `/profile/${profileHandle}`,
-    },
-  ]
-
   return (
     <div>
-      <Breadcrumb style={{ fontSize: 16 }} items={breadcrumbs} />
-      <br />
-
-      <Card title={`${APP_NAME} - ${cardTitle}`}>
-        <Row gutter={16}>
-          <Col span={8}>
-            <Image
-              src={user?.image ?? "/profile.png"}
-              className="standard-padding"
-              width={200}
-              height={200}
-              alt={"profile"}
-            />
-            <Divider />
-            <h3 className="bold">{userName}</h3>
-            <h4>@{profileHandle}</h4>
-            <br />
-            {user.createdAt && (
-              <h4>Account created: {formatDate(user.createdAt, true)}</h4>
-            )}
-
-            {!isYou && (
-              <Button
-                type="primary"
-                size="large"
-                onClick={() => {
-                  window.location.href = `/vouch?handle=${profileHandle}`
-                }}
-              >
-                Vouch for {userName}
-              </Button>
-            )}
-          </Col>
-          <Col span={16}>
-            <div className="handle-header bold">Endorsements</div>
-
-            {!endorsements && !loading && (
-              <div>
-                <Empty description="No endorsements yet" />
-              </div>
-            )}
-
-            {endorsements.map((endorsement, i) => {
-              return (
-                <div>
-                  <EndorsementRow
-                    defaultName={userName}
-                    key={i}
-                    endorsement={endorsement}
-                  />
-                </div>
-              )
-            })}
-          </Col>
-        </Row>
-      </Card>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
+        <div className="col-span-1">
+          <div>{getNameFromUser(user)}</div>
+          <div>{userName}</div>
+          <div>{user.handle}</div>
+          <div>{user.bio}</div>
+          <div>{user.location}</div>
+          <div>{user.industry}</div>
+          <div>{user.interests}</div>
+        </div>
+        <div className="col-span-3">Hey</div>
+      </div>
     </div>
   )
 }

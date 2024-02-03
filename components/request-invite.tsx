@@ -10,13 +10,13 @@ import { Input } from "./ui/input"
 import { useToast } from "./ui/use-toast"
 
 const RequestInvite = () => {
-  const [handle, setHandle] = useState("")
+  const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
   const { toast } = useToast()
 
   async function requestInvite() {
-    if (!handle || !email) {
+    if (!name || !email) {
       toast({
         title: "Error",
         description: "Please fill out all fields",
@@ -28,13 +28,13 @@ const RequestInvite = () => {
 
     try {
       setLoading(true)
-      const { data } = await axiosInstance.post("/auth/request-invite", {
-        handle,
+      const { data } = await axiosInstance.post("/user/request-invite", {
+        name: name,
         email,
       })
       toast({
         title: "Success",
-        description: "Check your email for an invite",
+        description: "Your request has been sent",
         duration: 1500,
       })
     } catch (error: any) {
@@ -62,9 +62,9 @@ const RequestInvite = () => {
 
       <Input
         className="mb-4"
-        value={handle}
-        onChange={(e) => setHandle(e.target.value)}
-        placeholder="Enter desired handle"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Enter your name"
       />
 
       <Button

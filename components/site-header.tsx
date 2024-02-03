@@ -1,9 +1,10 @@
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
-import ConnectButton from "@/components/ui/ConnectButton"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
+
+import ConnectButton from "./core/ConnectButton"
 
 export function SiteHeader() {
   return (
@@ -13,8 +14,8 @@ export function SiteHeader() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
             {/* Previously links here to github, etc. */}
-            <ConnectButton />
             <ThemeToggle />
+            <ConnectButton />
           </nav>
         </div>
       </div>

@@ -5,9 +5,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const abbreviate = (s) => (s ? `${s.substr(0, 6)}**` : "")
+export const abbreviate = (s: string) => (s ? `${s.substr(0, 6)}**` : "")
 
-export const formatDate = (d, onlyDate) => {
+export const formatDate = (d: Date, onlyDate: boolean) => {
   if (!(d instanceof Date)) {
     d = d ? new Date(d) : new Date()
   }
@@ -18,14 +18,18 @@ export const formatDate = (d, onlyDate) => {
   return `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`
 }
 
-export const isValidEmail = (email) => {
+export const isValidEmail = (email: string) => {
   return email && email.indexOf("@") !== -1
 }
 
-export const profileUrl = (profileHandle) =>
+export const getNameFromUser = (user: any) => {
+  return `${user.firstName} ${user.lastName}`
+}
+
+export const profileUrl = (profileHandle: string) =>
   `${window.location.origin}/profile/${profileHandle}`
 
-export const convertCamelToHuman = (str) => {
+export const convertCamelToHuman = (str: string) => {
   // Check if likely datetime timestamp ms
   if (str.length === 13) {
     return new Date(str).toLocaleDateString()
@@ -33,38 +37,47 @@ export const convertCamelToHuman = (str) => {
 
   return str
     .replace(/([A-Z])/g, " $1")
-    .replace(/^./, function (str) {
-      return str.toUpperCase()
+    .replace(/^./, function (s) {
+      return s.toUpperCase()
     })
     .replace(/_/g, " ")
 }
 
-export function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
+export function capitalize(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-export const createJsonFile = (signload, fileName) => {
+export const createJsonFile = (signload: any, fileName: string) => {
   const st = JSON.stringify(signload)
   const blob = new Blob([st], { type: "application/json" })
   const fileData = new File([blob], fileName)
   return fileData
 }
 
-export const col = (k, render) => ({
+export const col = (k: string, render: any) => ({
   title: capitalize(k).replaceAll("_", " "),
   dataIndex: k,
   key: k,
   render,
 })
 
-export const isEmpty = (r) => {
+export const isEmpty = (r: string) => {
   return !r || r.length === 0
 }
 
-export const humanError = (err) => {
+export const humanError = (err: any) => {
   let message = err.message || JSON.stringify(err)
 
-  if (message.indexOf("404") !== -1) {
+  const statusCode = err.response?.status
+  if (statusCode === 401) {
+    message = "Unauthorized. Please login again."
+  } else if (statusCode === 403) {
+    message = "Forbidden. Please login again."
+  } else if (statusCode === 429) {
+    message = "Too many requests. Please try again later."
+  } else if (statusCode === 409) {
+    message = "Conflict. Please try again later."
+  } else if (message.indexOf("404") !== -1) {
     message = "Server not reachable. Please try again later."
   } else if (message.indexOf("Network Error") !== -1) {
     message = "Could not connect to server. Please try again later."
@@ -72,7 +85,7 @@ export const humanError = (err) => {
   return message
 }
 
-export function bytesToSize(bytes) {
+export function bytesToSize(bytes: number) {
   var sizes = ["Bytes", "KB", "MB", "GB", "TB"]
   if (bytes == 0) return "0 Byte"
   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)))

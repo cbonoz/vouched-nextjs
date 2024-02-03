@@ -21,7 +21,7 @@ const useAuthAxios = () => {
 
   const getProfile = async (handle, type) => {
     const res = await axiosInstance.get(
-      `/public/profile/${handle}?type=${type}`
+      `/endorsements/${handle}?type=${type}&includeUser=true`
     )
     return res.data
   }

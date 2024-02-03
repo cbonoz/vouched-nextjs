@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 
 const SECTIONS = [
   "Vouched is a place to get and send personal endorsements from your network.",
@@ -21,9 +21,7 @@ export default function About() {
   const router = useRouter()
   return (
     <div className="about-page">
-      <p>
-        <Image src="/logo.png" alt="Vouched Logo" width={210} height={60} />
-      </p>
+      <div className="text-2xl">Vouched</div>
 
       {SECTIONS.map((section, i) => {
         return <p key={i}>{section}</p>
@@ -33,7 +31,7 @@ export default function About() {
         You can find the code on GitHub&nbsp;
         <Link
           style={{ color: "blue" }}
-          href="https://github.com/cbonoz/vouched"
+          href="https://github.com/cbonoz/vouched-nextjs"
           target="_blank"
         >
           here
@@ -41,19 +39,17 @@ export default function About() {
         .
       </p>
 
-      <p>
+      <div className="my-4">
         {/* Create profile */}
         <Button
-          type="primary"
-          size="large"
+          className={buttonVariants({ variant: "default" })}
           onClick={() => {
             router.push("/vouch")
           }}
         >
           Vouch for a connection
         </Button>
-        &nbsp;
-      </p>
+      </div>
     </div>
   )
 }
