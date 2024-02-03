@@ -5,9 +5,9 @@ import { useState } from "react"
 import { axiosInstance } from "@/lib/api"
 import { humanError } from "@/lib/utils"
 
-import { Button, buttonVariants } from "./ui/button"
-import { Input } from "./ui/input"
-import { useToast } from "./ui/use-toast"
+import { Button, buttonVariants } from "../ui/button"
+import { Input } from "../ui/input"
+import { useToast } from "../ui/use-toast"
 
 const RequestInvite = () => {
   const [name, setName] = useState("")

@@ -51,86 +51,85 @@ export default function SiteFooter() {
         </div>
         <div className="justify-between w-full mt-4 text-center lg:flex">
           <div className="w-full px-4 lg:w-1/3 md:w-1/2">
-            <h2 className="mb-2 font-bold tracking-widest text-gray-100">
-              Quick Links
-            </h2>
-            <ul className="mb-8 space-y-2 text-sm list-none">
-              <li>
-                <Link href={"/"} className="text-gray-00">
-                  Link 1
-                </Link>
-              </li>
-              <li>
-                <Link href={"/"} className="text-gray-300">
-                  Link 2
-                </Link>
-              </li>
-              <li>
-                <Link href={"/"} className="text-gray-300">
-                  Link 3
-                </Link>
-              </li>
-              {/* <li>
-                <Link href={"/"} className="text-gray-300">
-                  Link 4
-                </Link>
-              </li> */}
-            </ul>
-          </div>
-          <div className="w-full px-4 lg:w-1/3 md:w-1/2">
-            <h2 className="mb-2 font-bold tracking-widest text-gray-100">
+            <h2 className="mb-2 font-bold tracking-widest text-gray-500">
               Quick Links
             </h2>
             <ul className="mb-8 space-y-2 text-sm list-none">
               <li>
                 <Link href={"/"} className="text-gray-300">
-                  Link 1
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href={"/"} className="text-gray-300">
-                  Link 2
+                <Link href={"/about"} className="text-gray-300">
+                  About Vouched
                 </Link>
               </li>
               <li>
-                <Link href={"/"} className="text-gray-300">
-                  Link 3
-                </Link>
-              </li>
-              <li>
-                <Link href={"/"} className="text-gray-300">
-                  Link 4
+                <Link href={"/terms"} className="text-gray-300">
+                  ToS / Privacy Policy
                 </Link>
               </li>
             </ul>
           </div>
-          <div className="w-full px-4 lg:w-1/3 md:w-1/2">
-            <h2 className="mb-2 font-bold tracking-widest text-gray-100">
-              Quick Links
-            </h2>
-            <ul className="mb-8 space-y-2 text-sm list-none">
-              <li>
-                <Link href={"/"} className="text-gray-300">
-                  Link 1
-                </Link>
-              </li>
-              <li>
-                <Link href={"/"} className="text-gray-300">
-                  Link 2
-                </Link>
-              </li>
-              <li>
-                <Link href={"/"} className="text-gray-300">
-                  Link 3
-                </Link>
-              </li>
-              <li>
-                <Link href={"/"} className="text-gray-300">
-                  Link 4
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {false && (
+            <div className="w-full px-4 lg:w-1/3 md:w-1/2">
+              <h2 className="mb-2 font-bold tracking-widest text-gray-100">
+                Quick Links
+              </h2>
+              <ul className="mb-8 space-y-2 text-sm list-none">
+                <li>
+                  <Link href={"/"} className="text-gray-300">
+                    Link 1
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"/"} className="text-gray-300">
+                    Link 2
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"/"} className="text-gray-300">
+                    Link 3
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"/"} className="text-gray-300">
+                    Link 4
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
+          {false && (
+            <div className="w-full px-4 lg:w-1/3 md:w-1/2">
+              <h2 className="mb-2 font-bold tracking-widest text-gray-100">
+                Quick Links
+              </h2>
+              <ul className="mb-8 space-y-2 text-sm list-none">
+                <li>
+                  <Link href={"/"} className="text-gray-300">
+                    Link 1
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"/"} className="text-gray-300">
+                    Link 2
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"/"} className="text-gray-300">
+                    Link 3
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"/"} className="text-gray-300">
+                    Link 4
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
       <div className="flex justify-center -mt-12">

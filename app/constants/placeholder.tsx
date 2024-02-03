@@ -11,11 +11,10 @@ export const createDemoProfile = (handle: string) => {
       {
         id: 1,
         handle: "endorser",
-        firstName: "Endorser",
-        lastName: "User",
+        name: "John Smith",
         relationship: "Colleague",
-        endorsement: "This is a demo endorsement.",
-        createdAt: "2021-10-01T00:00:00Z",
+        message: "This is a demo endorsement.",
+        createdAt: Date.now(),
       },
     ],
   }

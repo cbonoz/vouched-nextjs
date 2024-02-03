@@ -6,7 +6,7 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Toaster } from "@/components/ui/toaster"
-import RequestInvite from "@/components/request-invite"
+import RequestInvite from "@/components/core/RequestInvite"
 
 export default function IndexPage() {
   return (
