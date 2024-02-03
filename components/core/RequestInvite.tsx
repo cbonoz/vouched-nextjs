@@ -52,19 +52,18 @@ const RequestInvite = () => {
   return (
     <div>
       {/* <h1>Request Invite</h1> */}
+      <Input
+        className="mb-4"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Enter your name"
+      />
 
       <Input
         className="mb-4"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Enter email"
-      />
-
-      <Input
-        className="mb-4"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Enter your name"
       />
 
       <Button
