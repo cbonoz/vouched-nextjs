@@ -11,6 +11,7 @@ export const createDemoProfile = (handle: string) => {
       {
         id: 1,
         handle: "endorser",
+        avatar: "https://i.pravatar.cc/40",
         name: "John Smith",
         relationship: "Colleague",
         message: "This is a demo endorsement.",

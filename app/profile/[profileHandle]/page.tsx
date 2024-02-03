@@ -52,7 +52,7 @@ export default function ProfilePage({ params }: Props) {
   if (loading || !profile) {
     return (
       <div>
-        Loading...
+        <div className="my-2">Loading...</div>
         <div>
           <div className="flex items-center space-x-4">
             <Skeleton className="h-12 w-12 rounded-full" />
@@ -79,13 +79,14 @@ export default function ProfilePage({ params }: Props) {
     <div>
       <div className="flex flex-row gap-8">
         <div className="basis-1/4">
-          <Avatar className="h-full w-full px-4">
+          <Avatar className="w-full h-auto px-4">
             <AvatarImage
               className="h-max w-max"
               src="https://github.com/shadcn.png"
             />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
+          <Separator className="my-4" />
           <div className="text-2xl">{getNameFromUser(user)}</div>
           <div>{user.handle}</div>
           <div>{user.bio}</div>
@@ -93,7 +94,7 @@ export default function ProfilePage({ params }: Props) {
           <div>{user.industry}</div>
           <div>{user.interests}</div>
         </div>
-        <div className="basis-3/4 my-4">
+        <div className="basis-3/4">
           <Tabs defaultValue="endorsements" className="w-[400px]">
             <TabsList>
               <TabsTrigger value="endorsements">Endorsements</TabsTrigger>
@@ -102,7 +103,7 @@ export default function ProfilePage({ params }: Props) {
             <TabsContent value="endorsements">
               <div>
                 <div className="my-4 text-2xl font-bold">
-                  {userName}&#39;s vouches
+                  {userName}&#39;s Vouches
                 </div>
                 {!isEmpty(endorsements) &&
                   endorsements.map((endorsement: any) => {
