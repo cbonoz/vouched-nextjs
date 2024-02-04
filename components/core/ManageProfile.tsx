@@ -8,6 +8,7 @@ import { capitalize, humanError, isEmpty, profileUrl } from "@/lib/utils"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import { Checkbox } from "../ui/checkbox"
+import { Input } from "../ui/input"
 import BasicCard from "./BasicCard"
 
 const ManageProfile = () => {
@@ -19,7 +20,7 @@ const ManageProfile = () => {
     if (isLoaded && user) {
       setData({
         ...user,
-        username: user.unsafeMetadata.handle,
+        handle: user.unsafeMetadata.handle,
         email: user.emailAddresses[0].emailAddress,
       })
     }
@@ -40,8 +41,8 @@ const ManageProfile = () => {
       return false
     }
 
-    if (isEmpty(data.username)) {
-      setError("Username is required")
+    if (isEmpty(data.handle)) {
+      setError("handle is required")
       return false
     }
     setError(undefined)
@@ -62,10 +63,8 @@ const ManageProfile = () => {
       await user.update({
         firstName: data.firstName,
         lastName: data.lastName,
-        // imageUrl: data.imageUrl,
         unsafeMetadata: {
-          ...user.unsafeMetadata,
-          handle: data.username,
+          handle: data.handle,
         },
       })
     } catch (e) {
@@ -79,7 +78,40 @@ const ManageProfile = () => {
   return (
     <div>
       <BasicCard title="Manage account">
-        <div className="flex items-center space-x-2">
+        <div>
+          <div>
+            <Label htmlFor="firstName">First name</Label>
+            <Input
+              id="firstName"
+              value={data.firstName}
+              onChange={(e) => updateField("firstName", e.target.value)}
+              className="Input"
+            />
+          </div>
+          {/* last name */}
+
+          <div>
+            <Label htmlFor="lastName">Last name</Label>
+            <Input
+              id="lastName"
+              value={data.lastName}
+              onChange={(e) => updateField("lastName", e.target.value)}
+              className="Input"
+            />
+          </div>
+
+          {/* handle */}
+          <div>
+            <Label htmlFor="lastName">Last name</Label>
+            <Input
+              id="lastName"
+              value={data.lastName}
+              onChange={(e) => updateField("lastName", e.target.value)}
+              className="Input"
+            />
+          </div>
+        </div>
+        <div>
           <Checkbox id="terms" />
           <Label htmlFor="terms">Accept terms and conditions</Label>
         </div>
