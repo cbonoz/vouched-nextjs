@@ -8,6 +8,7 @@ import { humanError } from "@/lib/utils"
 import { Button, buttonVariants } from "../ui/button"
 import { Input } from "../ui/input"
 import { useToast } from "../ui/use-toast"
+import BasicCard from "./BasicCard"
 
 const RequestInvite = () => {
   const [name, setName] = useState("")
@@ -52,26 +53,28 @@ const RequestInvite = () => {
   return (
     <div>
       {/* <h1>Request Invite</h1> */}
-      <Input
-        className="mb-4"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Enter your name"
-      />
+      <BasicCard title="Request to join Vouched" className="min-w-full p-4">
+        <Input
+          className="mb-4"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter your name"
+        />
 
-      <Input
-        className="mb-4"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter email"
-      />
+        <Input
+          className="mb-4"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter email"
+        />
 
-      <Button
-        onClick={requestInvite}
-        className={buttonVariants({ variant: "default" })}
-      >
-        Request invite
-      </Button>
+        <Button
+          onClick={requestInvite}
+          className={buttonVariants({ variant: "default" })}
+        >
+          Request invite
+        </Button>
+      </BasicCard>
     </div>
   )
 }

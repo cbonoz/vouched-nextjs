@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Endorsement from "@/components/core/Endorsement"
+import Endorsement from "@/components/core/EndorsementRow"
 import Vouch from "@/components/core/Vouch"
 import { createDemoProfile } from "@/app/constants/placeholder"
 

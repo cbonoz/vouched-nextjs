@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 
 import { Button } from "@/components/ui/button"
@@ -16,11 +17,9 @@ function ConnectButton({
       <SignedOut>
         {/* Signed out users get sign in button */}
         <div>
-          <SignInButton redirectUrl="/profile">
-            <Button style={{ display: "block" }} type={buttonType}>
-              Sign in
-            </Button>
-          </SignInButton>
+          <Button style={{ display: "block" }} type={buttonType}>
+            <Link href="/sign-in">Sign in</Link>
+          </Button>
         </div>
       </SignedOut>
     </div>

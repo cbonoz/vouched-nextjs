@@ -7,30 +7,30 @@ import { siteConfig } from "@/config/site"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Toaster } from "@/components/ui/toaster"
 import RequestInvite from "@/components/core/RequestInvite"
+import { Icons } from "@/components/icons"
 
 export default function IndexPage() {
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
-      <div className="flex max-w-[980px] flex-col items-start gap-2">
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
-          {siteConfig.description}
-        </h1>
-        <p className="max-w-[700px] text-lg text-muted-foreground">
-          {siteConfig.slogan}
-        </p>
-      </div>
-      <div className="flex gap-4">
-        {siteConfig.checklistItems.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center justify-center gap-1"
-          >
-            {item}
+      <div className="flex flex-row gap-8">
+        <div className="basis-1/2">
+          <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
+            {siteConfig.description}
+          </h1>
+          <p className="max-w-[700px] text-lg text-muted-foreground">
+            {siteConfig.slogan}
+          </p>
+          {siteConfig.checklistItems.map((item, index) => (
+            <div className="py-2 text-xl" key={index}>
+              <span className="flex">
+                <Icons.check className="mx-2 size-6" /> {item}.
+              </span>
+            </div>
+          ))}
+          <div className="py-4">
+            <RequestInvite />
           </div>
-        ))}
-      </div>
-      <div className="flex gap-4">
-        <RequestInvite />
+        </div>
         {/* <Link
           target="_blank"
           rel="noreferrer"
@@ -39,10 +39,17 @@ export default function IndexPage() {
         >
           GitHub
         </Link> */}
-      </div>
 
-      <div className="flex max-w-[980px] flex-col  gap-2">
-        {/* <Image src="/static/hero.png" width={980} height={500} alt="hero" /> */}
+        <div className="basis-1/2 justify-center">
+          <Image
+            src="/static/hero.png"
+            width="0"
+            height="0"
+            sizes="100vw"
+            style={{ width: "100%", height: "auto" }}
+            alt="hero"
+          />
+        </div>
       </div>
       <Toaster />
     </section>

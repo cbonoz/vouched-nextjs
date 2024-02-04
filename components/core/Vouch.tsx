@@ -20,7 +20,10 @@ const Vouch = ({ targetUser }: Props) => {
 
   return (
     <div>
-      <BasicCard title={`Vouch for ${targetUser.firstName}`}>
+      <BasicCard
+        title={`Vouch for ${targetUser.firstName}`}
+        className="min-w-max p-4"
+      >
         <Label className="mb-4">Message</Label>
         <Textarea
           className="my-4 w-full"

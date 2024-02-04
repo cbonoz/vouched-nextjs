@@ -1,7 +1,14 @@
-export const createDemoProfile = (handle: string) => {
+import { User } from "@clerk/clerk-js/dist/types/core/resources/User"
+
+import { Endorsement } from "@/lib/types"
+
+export const createDemoProfile = (
+  handle: string
+): { user: any; endorsements: Endorsement[] } => {
+  const d = new Date()
   return {
     user: {
-      id: 123,
+      id: "123",
       handle,
       username: "demo",
       firstName: "Demo",
@@ -15,7 +22,18 @@ export const createDemoProfile = (handle: string) => {
         name: "John Smith",
         relationship: "Colleague",
         message: "This is a demo endorsement.",
-        createdAt: Date.now(),
+        approvedAt: d,
+        createdAt: d,
+      },
+      {
+        id: 2,
+        handle: "endorser",
+        avatar: "https://i.pravatar.cc/40",
+        name: "John Smith",
+        relationship: "Colleague",
+        message: "This is a demo endorsement.",
+        approvedAt: undefined,
+        createdAt: d,
       },
     ],
   }

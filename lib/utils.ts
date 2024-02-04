@@ -29,6 +29,8 @@ export const getNameFromUser = (user: any) => {
 export const profileUrl = (profileHandle: string) =>
   `${window.location.origin}/profile/${profileHandle}`
 
+export const termsUrl = () => `${window.location.origin}/terms`
+
 export const convertCamelToHuman = (str: string) => {
   // Check if likely datetime timestamp ms
   if (str.length === 13) {

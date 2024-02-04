@@ -21,7 +21,7 @@ const BasicCard = ({
   description,
   children,
   footer,
-  className = "p-6",
+  className = "p-4",
 }: Props) => {
   return (
     <Card className={className}>
