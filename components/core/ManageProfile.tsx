@@ -109,7 +109,7 @@ const ManageProfile = () => {
   }
 
   return (
-    <BasicCard title="Manage account" className="min-w-max p-4">
+    <BasicCard title="User settings" className="min-w-max p-4">
       <div className="py-2">
         <Label htmlFor="firstName">First name</Label>
         <Input
@@ -151,6 +151,11 @@ const ManageProfile = () => {
           onChange={(e) => updateField("handle", e.target.value)}
           className="Input"
         />
+      </div>
+
+      <div className="my-4">
+        Update your profile image by clicking the user icon in the top right of
+        the page.
       </div>
 
       {/* handle */}

@@ -27,9 +27,10 @@ const ProfileSettings = () => {
 
   return (
     <div>
-      <div className="my-4 text-2xl">Profile Settings</div>
+      <div className="my-4 text-2xl">Main dashboard</div>
       <div className="my-4">
-        From this page you can manage your account, and invite new users.{" "}
+        From this page you can manage your account settings and invite new
+        users.{" "}
         {user?.handle && (
           <a rel="noreferrer" target="_blank" href={profileUrl(user.handle)}>
             View your profile.
@@ -38,7 +39,7 @@ const ProfileSettings = () => {
       </div>
       <Tabs defaultValue="manage" className="w-[800px]">
         <TabsList>
-          <TabsTrigger value="manage">Manage account</TabsTrigger>
+          <TabsTrigger value="manage">User settings</TabsTrigger>
           <TabsTrigger value="invite">Invite user to Vouched</TabsTrigger>
           <TabsTrigger value="howitworks">How Vouched works</TabsTrigger>
         </TabsList>
