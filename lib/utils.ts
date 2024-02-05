@@ -68,9 +68,14 @@ export const isEmpty = (r: string) => {
 }
 
 export const humanError = (err: any) => {
-  let message = err.message || JSON.stringify(err)
+  const { response } = err
+  let message =
+    response.data.error ||
+    response.data.message ||
+    err.message ||
+    JSON.stringify(err)
 
-  const statusCode = err.response?.status
+  const statusCode = response?.status
   if (statusCode === 401) {
     message = "Unauthorized. Please login again."
   } else if (statusCode === 403) {

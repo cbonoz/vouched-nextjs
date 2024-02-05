@@ -29,8 +29,8 @@ const RequestInvite = () => {
 
     try {
       setLoading(true)
-      const { data } = await axiosInstance.post("/user/request-invite", {
-        name: name,
+      const { data } = await axiosInstance.post("/user/request", {
+        name,
         email,
       })
       toast({

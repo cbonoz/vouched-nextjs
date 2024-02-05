@@ -8,6 +8,7 @@ import { Label } from "@radix-ui/react-label"
 
 import { axiosInstance } from "@/lib/api"
 import { capitalize, humanError, isEmpty, profileUrl } from "@/lib/utils"
+import useAuthAxios from "@/hooks/useAuthAxios"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   Tooltip,
@@ -28,6 +29,8 @@ const ManageProfile = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | undefined>()
   const [data, setData] = useState<any>({})
+
+  const { authAxios } = useAuthAxios()
   useEffect(() => {
     if (!isLoaded || !user) {
       return
@@ -35,7 +38,7 @@ const ManageProfile = () => {
     async function getUserData() {
       setLoading(true)
       try {
-        const response = await axiosInstance.get(`/user`)
+        const response = await authAxios.get(`/user`)
         const userData = response.data
         setData({
           ...userData,
@@ -85,7 +88,7 @@ const ManageProfile = () => {
     setLoading(true)
 
     try {
-      await axiosInstance.put(`/user`, {
+      await axiosInstance.patch(`/user/info`, {
         firstName: data.firstName,
         lastName: data.lastName,
         handle: data.handle,

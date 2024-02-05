@@ -40,6 +40,7 @@ const useAuthAxios = () => {
     getProfile,
     getUser,
     postEndorse,
+    authAxios: axiosInstance
   }
 }
 export default useAuthAxios
