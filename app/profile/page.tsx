@@ -9,6 +9,7 @@ import { capitalize, humanError, isEmpty, profileUrl } from "@/lib/utils"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import About from "@/components/core/About"
 import InviteUser from "@/components/core/InviteUser"
+import ManageNetwork from "@/components/core/ManageNetwork"
 import ManageProfile from "@/components/core/ManageProfile"
 
 const ProfileSettings = () => {
@@ -40,11 +41,15 @@ const ProfileSettings = () => {
       <Tabs defaultValue="manage" className="w-[800px]">
         <TabsList>
           <TabsTrigger value="manage">User settings</TabsTrigger>
+          <TabsTrigger value="vouches">Manage your Network</TabsTrigger>
           <TabsTrigger value="invite">Invite user to Vouched</TabsTrigger>
           <TabsTrigger value="howitworks">How Vouched works</TabsTrigger>
         </TabsList>
         <TabsContent value="manage">
           <ManageProfile />
+        </TabsContent>
+        <TabsContent value="network">
+          <ManageNetwork />
         </TabsContent>
         <TabsContent value="invite">
           <InviteUser />

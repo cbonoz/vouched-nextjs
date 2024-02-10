@@ -59,7 +59,7 @@ const InviteUser = () => {
           className="mb-4"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Enter their name"
+          placeholder="Enter their first and last name"
         />
 
         <Input

@@ -10,19 +10,15 @@ import { axiosInstance } from "@/lib/api"
 import { capitalize, humanError, isEmpty, profileUrl } from "@/lib/utils"
 import useAuthAxios from "@/hooks/useAuthAxios"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 
 import { Icons } from "../icons"
 import { Button } from "../ui/button"
 import { Checkbox } from "../ui/checkbox"
 import { Input } from "../ui/input"
 import { Switch } from "../ui/switch"
+import { Textarea } from "../ui/textarea"
 import BasicCard from "./BasicCard"
+import BasicTooltip from "./BasicTooltip"
 
 const ManageProfile = () => {
   const { isSignedIn, user, isLoaded } = useUser()
@@ -132,21 +128,44 @@ const ManageProfile = () => {
           className="Input"
         />
       </div>
+
+      <div className="py-2">
+        <Label htmlFor="bio">
+          Enter bio
+          <BasicTooltip text="A short bio about yourself. This bio will be displayed on your public profile page">
+            <Icons.infoCircle />
+          </BasicTooltip>
+        </Label>
+        <Textarea
+          id="bio"
+          rows={5}
+          value={data.bio}
+          onChange={(e) => updateField("bio", e.target.value)}
+          className="Input"
+        />
+      </div>
+
+      <div className="py-2">
+        <Label htmlFor="bio">
+          Enter agreement text
+          <BasicTooltip text="When visitors view your profile, they will be asked to agree to this text in order to view your Vouch network.">
+            <Icons.infoCircle />
+          </BasicTooltip>
+        </Label>
+        <Textarea
+          id="agreement"
+          rows={5}
+          value={data.agreement}
+          onChange={(e) => updateField("agreement", e.target.value)}
+          className="Input"
+        />
+      </div>
       <div className="py-2">
         <Label htmlFor="handle">
-          <TooltipProvider>
-            Enter Vouched page handle
-            <Tooltip>
-              <TooltipTrigger>
-                <Icons.infoCircle />
-              </TooltipTrigger>
-              <TooltipContent className="flex-center">
-                A handle defines your unique Vouched profile page url on the
-                platform.
-                <br /> While saved, other users cannot claim this handle.
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          Enter Vouched page handle
+          <BasicTooltip text="A handle defines your unique Vouched profile page url on the platform. While saved, other users cannot claim this handle.">
+            <Icons.infoCircle />
+          </BasicTooltip>
         </Label>
         <Input
           id="handle"
