@@ -107,6 +107,11 @@ const ManageProfile = () => {
     }
   }
 
+  const handlePlaceholder =
+    data.firstName && data.lastName
+      ? (data.firstName + "-" + data.lastName).toLowerCase()
+      : "john-doe"
+
   return (
     <BasicCard title="User settings" className="min-w-max p-4">
       <div className="py-2">
@@ -114,6 +119,7 @@ const ManageProfile = () => {
         <Input
           id="firstName"
           value={data.firstName}
+          placeholder="Your first name"
           onChange={(e) => updateField("firstName", e.target.value)}
           className="Input"
         />
@@ -123,8 +129,25 @@ const ManageProfile = () => {
         <Label htmlFor="lastName">Last name</Label>
         <Input
           id="lastName"
+          placeholder="Your last name"
           value={data.lastName}
           onChange={(e) => updateField("lastName", e.target.value)}
+          className="Input"
+        />
+      </div>
+
+      <div className="py-2">
+        <Label htmlFor="title">
+          Enter title
+          <BasicTooltip text="A title for your professional background and your expertise. This displays at the top of your profile">
+            <Icons.infoCircle />
+          </BasicTooltip>
+        </Label>
+        <Input
+          id="title"
+          placeholder='Ex: "Software sales leader" or "Product Manager with over 10 years of experience"'
+          value={data.title}
+          onChange={(e) => updateField("title", e.target.value)}
           className="Input"
         />
       </div>
@@ -139,6 +162,7 @@ const ManageProfile = () => {
         <Textarea
           id="bio"
           rows={5}
+          placeholder='Ex: "I am a software engineer with a passion for building scalable web applications."'
           value={data.bio}
           onChange={(e) => updateField("bio", e.target.value)}
           className="Input"
@@ -156,6 +180,7 @@ const ManageProfile = () => {
           id="agreement"
           rows={5}
           value={data.agreement}
+          placeholder='Ex: "By using my Vouch network, you agree to pay 10% of any successful hire first year salary ."'
           onChange={(e) => updateField("agreement", e.target.value)}
           className="Input"
         />
@@ -170,6 +195,7 @@ const ManageProfile = () => {
         <Input
           id="handle"
           value={data.handle}
+          placeholder={`ex: ${handlePlaceholder}`}
           onChange={(e) => updateField("handle", e.target.value)}
           className="Input"
         />

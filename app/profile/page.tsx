@@ -38,10 +38,10 @@ const ProfileSettings = () => {
           </a>
         )}
       </div>
-      <Tabs defaultValue="manage" className="w-[800px]">
+      <Tabs defaultValue="network" className="w-[800px]">
         <TabsList>
+          <TabsTrigger value="network">Manage your Network</TabsTrigger>
           <TabsTrigger value="manage">User settings</TabsTrigger>
-          <TabsTrigger value="vouches">Manage your Network</TabsTrigger>
           <TabsTrigger value="invite">Invite user to Vouched</TabsTrigger>
           <TabsTrigger value="howitworks">How Vouched works</TabsTrigger>
         </TabsList>

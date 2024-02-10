@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { SignIn, UserNetwork, useUser } from "@clerk/nextjs"
 import { Label } from "@radix-ui/react-label"
+import { Separator } from "@radix-ui/react-separator"
 
 import { axiosInstance } from "@/lib/api"
 import { capitalize, humanError, isEmpty, profileUrl } from "@/lib/utils"
@@ -24,7 +25,7 @@ import { Input } from "../ui/input"
 import { Switch } from "../ui/switch"
 import { Textarea } from "../ui/textarea"
 import BasicCard from "./BasicCard"
-import Vouch from './Vouch'
+import Vouch from "./Vouch"
 
 const ManageNetwork = () => {
   const { isSignedIn, user, isLoaded } = useUser()
@@ -58,8 +59,35 @@ const ManageNetwork = () => {
 
   return (
     <div>
-      <h1>Add new Endorsement</h1>
-      <Vouch targetUser={user} />
+      <div className="flex items-center space-x-4">
+        <div>
+          <Vouch onSubmit={(data: any) => console.log("submit", data)} />
+        </div>
+
+        <div>
+          {isEmpty(endorsements) && (
+            <div className="my-4">
+              <h1 className="text-2xl font-bold">No added endorsements yet</h1>
+              <p className="text-gray-500">
+                You can add endorsements for folks from your network to build
+                your Vouched profile page.
+              </p>
+            </div>
+          )}
+          <div className="my-4">
+            These profiles will be visible on your Vouch page if a user has
+            unlocked access. Make your profile public from the User settings
+            tab.
+          </div>
+          {endorsements.map((endorsement: any) => {
+            return (
+              <BasicCard title="Endorsement" className="min-w-max p-4">
+                {JSON.stringify(endorsement)}
+              </BasicCard>
+            )
+          })}
+        </div>
+      </div>
     </div>
   )
 }

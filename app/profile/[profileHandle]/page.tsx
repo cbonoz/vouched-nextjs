@@ -78,15 +78,17 @@ export default function ProfilePage({ params }: Props) {
   return (
     <div>
       <div className="flex flex-row gap-8">
+        <Avatar className="w-[256px] h-[156]">
+          <AvatarImage
+            className="h-max w-max"
+            src="https://github.com/shadcn.png"
+          />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      </div>
+      <Separator className="my-4" />
+      <div className="flex flex-row gap-8">
         <div className="basis-1/4">
-          <Avatar className="w-full h-auto px-4">
-            <AvatarImage
-              className="h-max w-max"
-              src="https://github.com/shadcn.png"
-            />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-          <Separator className="my-4" />
           <div className="text-2xl">{getNameFromUser(user)}</div>
           <div>{user.handle}</div>
           <div>{user.bio}</div>

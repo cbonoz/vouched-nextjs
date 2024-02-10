@@ -1,13 +1,18 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
+import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 
 export default function SiteFooter() {
+  const { theme } = useTheme()
+
+  const logo = `/logo-${theme}.png`
   return (
     <footer>
       <Separator />
@@ -24,9 +29,14 @@ export default function SiteFooter() {
       "
       >
         <div className="flex-shrink-0 w-64 mx-auto text-center md:mx-0 md:text-left">
-          <Link href={"/"} className="text-2xl">
-            Vouched
-          </Link>
+          <Image
+            className="my-4"
+            src={logo}
+            alt="Vouched"
+            width={200}
+            height={50}
+          />
+          <Link href={"/"}>Vouched</Link>
           <p className="mt-2 text-xs text-justify text-gray-400">
             Vouched is a community of endorsers and strong candidates.
           </p>
@@ -35,7 +45,7 @@ export default function SiteFooter() {
             <Button variant="destructive">Subscribe</Button>
           </div> */}
           <div className="flex justify-center mt-4 space-x-4 lg:mt-2">
-            <Link href={""}>
+            {/* <Link href={""}>
               <Facebook className="text-blue-500" />
             </Link>
             <Link href={""}>
@@ -46,7 +56,7 @@ export default function SiteFooter() {
             </Link>
             <Link href={""}>
               <Linkedin className="text-blue-400" />
-            </Link>
+            </Link> */}
           </div>
         </div>
         <div className="justify-between w-full mt-4 text-center lg:flex">
@@ -133,7 +143,9 @@ export default function SiteFooter() {
         </div>
       </div>
       <div className="flex justify-center -mt-12">
-        <p className="text-center text-white pb-2">@2024 Vouched</p>
+        <p className="text-center text-white pb-2">
+          @{new Date().getFullYear()} Vouched - All Rights Reserved.
+        </p>
       </div>
     </footer>
   )
