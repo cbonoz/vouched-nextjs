@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card"
 
 interface Props {
-  title: string
+  title: React.ReactNode
   description?: string
   body?: any
   children?: any

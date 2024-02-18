@@ -10,63 +10,68 @@ import useAuthAxios from "@/hooks/useAuthAxios"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useEndorsements } from "@/app/context/endorsements"
 
+import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import BasicCard from "./BasicCard"
 import RenderObject from "./RenderObject"
 
-const ManageNetwork = () => {
+const AccessRequests = () => {
   const { isSignedIn, user, isLoaded } = useUser()
   const [error, setError] = useState<string | undefined>()
   const [data, setData] = useState<any>({})
 
   const { authAxios } = useAuthAxios()
 
-  const { endorsements, loading, deleteEndorsement, getEndorsements } =
-    useEndorsements()
+  const {
+    loading,
+    accessRequests,
+    getAccessRequests,
+    rejectRequest,
+    acceptRequest,
+  } = useEndorsements()
 
   useEffect(() => {
     if (!isLoaded || !user) {
       return
     }
-    getEndorsements()
+    getAccessRequests()
   }, [user, isLoaded])
 
-  const hasEndorsements = !isEmpty(endorsements)
+  const hasRequests = !isEmpty(accessRequests)
 
-  if (loading && !hasEndorsements) {
+  if (loading && !hasRequests) {
     return <div>Loading...</div>
   }
-
-  const filteredEndorsements = endorsements.filter(
-    (e: any) => e.userId === user.id
-  )
 
   return (
     <div>
       <div className="flex items-center space-x-4">
         <div>
-          {!hasEndorsements && !loading && (
+          {!hasRequests && !loading && (
             <div className="my-4">
-              <h1 className="text-2xl font-bold">No added endorsements yet</h1>
+              <h1 className="text-2xl font-bold">No access requests yet</h1>
               <p className="text-gray-500">
-                {`You can add endorsements for individuals from your network from the
-                'Add endorsement' tab.`}
+                {`You will see access requests here when someone requests access to
+                your endorsements.`}
               </p>
             </div>
           )}
-          <div className="my-4">
-            These profiles will be visible on your Vouched profile page if a
-            user has unlocked access. Make your profile public from the User
-            settings tab.
-          </div>
-          {endorsements.map((endorsement: any) => {
+          {accessRequests.map((request: any) => {
             const actionRow = (
               // align to fill row
               <div className="flex justify-between">
                 <span>Endorsement</span>
                 <span>
+                  <Button
+                    onClick={() => acceptRequest(request.id)}
+                    className="text-green-500"
+                  >
+                    Accept request
+                  </Button>
+                </span>
+                <span>
                   <button
-                    onClick={() => deleteEndorsement(endorsement.id)}
+                    onClick={() => rejectRequest(request.id)}
                     className="text-red-500"
                   >
                     <TrashIcon size={24} />
@@ -95,4 +100,4 @@ const ManageNetwork = () => {
     </div>
   )
 }
-export default ManageNetwork
+export default AccessRequests

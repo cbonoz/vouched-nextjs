@@ -3,7 +3,7 @@ import BasicCard from "./BasicCard"
 const About = () => {
   return (
     <div>
-      <BasicCard title="About" className="w-full p-6">
+      <BasicCard title="Welcome to Vouched!" className="w-full p-6">
         <div className="my-4">
           Vouched is a platform that allows you to endorse people you know and
           trust.{" "}

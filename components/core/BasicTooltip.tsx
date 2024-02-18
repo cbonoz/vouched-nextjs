@@ -15,7 +15,9 @@ const BasicTooltip = ({ children, text }: Props) => {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger>{children}</TooltipTrigger>
-        <TooltipContent className="flex-center">{text}</TooltipContent>
+        <TooltipContent className="flex-center max-w-[300px] align-center justify-center">
+          {text}
+        </TooltipContent>
       </Tooltip>
     </TooltipProvider>
   )

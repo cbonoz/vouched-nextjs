@@ -20,9 +20,16 @@ const useAuthAxios = () => {
   )
 
   const getProfile = async (handle, type) => {
-    const res = await axiosInstance.get(
-      `/endorsements/${handle}?type=${type}&includeUser=true`
-    )
+    const res = await axiosInstance.get(`/public/profile?handle=${handle}`)
+    return res.data
+  }
+
+  const requestAccess = async (handle, message, email) => {
+    const res = await axiosInstance.post(`/public/profile/access`, {
+      handle,
+      message,
+      email,
+    })
     return res.data
   }
 
@@ -40,7 +47,7 @@ const useAuthAxios = () => {
     getProfile,
     getUser,
     postEndorse,
-    authAxios: axiosInstance
+    authAxios: axiosInstance,
   }
 }
 export default useAuthAxios

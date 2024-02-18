@@ -12,7 +12,7 @@ import { Separator } from "@/components/ui/separator"
 export default function SiteFooter() {
   const { theme } = useTheme()
 
-  const logo = `/logo-${theme}.png`
+  const logo = `/logo-${theme || "light"}.png`
   return (
     <footer>
       <Separator />

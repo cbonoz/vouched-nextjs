@@ -8,12 +8,31 @@ import { Separator } from "@radix-ui/react-menubar"
 import { capitalize, humanError, isEmpty, profileUrl } from "@/lib/utils"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import About from "@/components/core/About"
+import AccessRequests from "@/components/core/AccessRequests"
 import InviteUser from "@/components/core/InviteUser"
 import ManageNetwork from "@/components/core/ManageNetwork"
 import ManageProfile from "@/components/core/ManageProfile"
+import Vouch from "@/components/core/Vouch"
+
+import { useEndorsements } from "../context/endorsements"
 
 const ProfileSettings = () => {
   const { user, isLoaded, isSignedIn } = useUser()
+
+  const { endorsements } = useEndorsements()
+
+  useEffect(() => {
+    if (!isLoaded) {
+      const getTab = () => {
+        const tab = new URLSearchParams(window.location.search).get("tab")
+        return tab || "manage"
+      }
+      setSelectedTab(getTab())
+    }
+  }, [isLoaded])
+
+  const [selectedTab, setSelectedTab] = useState("")
+
   const router = useRouter()
 
   if (!isLoaded) {
@@ -26,30 +45,41 @@ const ProfileSettings = () => {
     return
   }
 
+  const getManageHeading = () => {
+    if (endorsements.length > 0) {
+      return `Manage your endorsements (${endorsements.length})`
+    }
+    return "Manage your endorsements"
+  }
+
   return (
     <div>
       <div className="my-4 text-2xl">Main dashboard</div>
       <div className="my-4">
-        From this page you can manage your account settings and invite new
-        users.{" "}
-        {user?.handle && (
-          <a rel="noreferrer" target="_blank" href={profileUrl(user.handle)}>
-            View your profile.
-          </a>
-        )}
+        From this page you can manage your account settings and add new
+        endorsements to your profile page.
       </div>
-      <Tabs defaultValue="network" className="w-[800px]">
+      <Tabs defaultValue={selectedTab} className="w-[800px]">
         <TabsList>
-          <TabsTrigger value="network">Manage your Network</TabsTrigger>
+          <TabsTrigger value="network">{getManageHeading()}</TabsTrigger>
+          <TabsTrigger value="endorse">Add endorsement</TabsTrigger>
+          <TabsTrigger value="access">Access requests</TabsTrigger>
           <TabsTrigger value="manage">User settings</TabsTrigger>
-          <TabsTrigger value="invite">Invite user to Vouched</TabsTrigger>
+          {/* <TabsTrigger value="invite">Invite user to Vouched</TabsTrigger> */}
           <TabsTrigger value="howitworks">How Vouched works</TabsTrigger>
         </TabsList>
         <TabsContent value="manage">
           <ManageProfile />
         </TabsContent>
+
+        <TabsContent value="endorse">
+          <Vouch onSubmit={(data: any) => console.log("submit", data)} />
+        </TabsContent>
         <TabsContent value="network">
           <ManageNetwork />
+        </TabsContent>
+        <TabsContent value="access">
+          <AccessRequests />
         </TabsContent>
         <TabsContent value="invite">
           <InviteUser />

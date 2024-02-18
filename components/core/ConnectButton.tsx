@@ -12,7 +12,10 @@ function ConnectButton({
     <div className="connect-button">
       <SignedIn>
         {/* Mount the UserButton component */}
-        <UserButton />
+        <UserButton
+          //  redirect on logout
+          afterSignOutUrl="/"
+        />
       </SignedIn>
       <SignedOut>
         {/* Signed out users get sign in button */}

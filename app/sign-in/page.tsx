@@ -1,19 +1,20 @@
 import Link from "next/link"
 import { SignIn, SignUp } from "@clerk/nextjs"
 
+import { siteConfig } from "@/config/site"
+
 const SignInPage = () => {
   return (
     <div>
-      <div className="flex flex-row justify-center center-content">
-        <SignIn afterSignInUrl="/profile" />
+      <div className="center-content my-12 flex flex-row justify-center">
+        <SignIn afterSignInUrl={siteConfig.defaultHome} signUpUrl="/sign-up" />
       </div>
-      <div className="flex my-4 flex-row text-md justify-center content-center">
-        Vouched is an invite-only platform. If you do not have an account,
-        please request an invite&nbsp;
-        <a className="underline" href="/">
+      <div className="text-md my-4 flex flex-row content-center justify-center">
+        {/* No account? Sign up&nbsp;
+        <Link className="text-blue-500" href="/sign-up">
           here
-        </a>
-        .
+        </Link>
+        . */}
       </div>
     </div>
   )

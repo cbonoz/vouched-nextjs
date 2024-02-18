@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const abbreviate = (s: string) => (s ? `${s.substr(0, 6)}**` : "")
 
-export const formatDate = (d: Date, onlyDate: boolean) => {
+export const formatDate = (d: Date | string, onlyDate: boolean) => {
   if (!(d instanceof Date)) {
     d = d ? new Date(d) : new Date()
   }
@@ -63,7 +63,7 @@ export const col = (k: string, render: any) => ({
   render,
 })
 
-export const isEmpty = (r: string) => {
+export const isEmpty = (r: string | Array<any>) => {
   return !r || r.length === 0
 }
 

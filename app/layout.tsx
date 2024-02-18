@@ -10,6 +10,8 @@ import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
+import { EndorsementsProvider } from "./context/endorsements"
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -43,16 +45,22 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <ClerkProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <div className="relative flex min-h-screen flex-col">
-                <SiteHeader />
-                <div className="container min-h-screen mx-auto my-8 px-4">
-                  {children}
+            <EndorsementsProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+              >
+                <div className="relative flex min-h-screen flex-col">
+                  <SiteHeader />
+                  <div className="container mx-auto my-8 min-h-screen px-4">
+                    {children}
+                  </div>
+                  <SiteFooter />
                 </div>
-                <SiteFooter />
-              </div>
-              {/* <TailwindIndicator /> */}
-            </ThemeProvider>
+                {/* <TailwindIndicator /> */}
+              </ThemeProvider>
+            </EndorsementsProvider>
           </ClerkProvider>
         </body>
       </html>
