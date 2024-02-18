@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { useUser } from "@clerk/nextjs"
 
 import { siteConfig } from "@/config/site"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -10,6 +11,7 @@ import RequestInvite from "@/components/core/RequestInvite"
 import { Icons } from "@/components/icons"
 
 export default function IndexPage() {
+  const { isSignedIn, user, isLoaded } = useUser()
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex flex-row gap-8">
@@ -17,19 +19,37 @@ export default function IndexPage() {
           <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
             {siteConfig.description}
           </h1>
-          <p className="max-w-[700px] text-lg text-muted-foreground">
+          <p className="max-w-[700px] text-lg my-2 text-muted-foreground">
             {siteConfig.slogan}
           </p>
-          {siteConfig.checklistItems.map((item, index) => (
-            <div className="py-2 text-xl" key={index}>
-              <span className="flex">
-                <Icons.check className="mx-2 size-6" /> {item}.
-              </span>
-            </div>
-          ))}
-          <div className="py-4">
-            <RequestInvite />
+          <div className="my-4">
+            {siteConfig.checklistItems.map((item, index) => (
+              <div className="py-2 text-xl" key={index}>
+                <span className="flex">
+                  <Icons.check className="mx-2 size-6" /> {item}.
+                </span>
+              </div>
+            ))}
           </div>
+          <div className="py-4">
+            {!isSignedIn && (
+              <Link href="/sign-in">
+                <Button className={buttonVariants({ variant: "default" })}>
+                  Get Started
+                </Button>
+              </Link>
+            )}
+            {isSignedIn && (
+              <Link href="/profile">
+                <Button className={buttonVariants({ variant: "default" })}>
+                  Go to Profile
+                </Button>
+              </Link>
+            )}
+          </div>
+          {/* <div className="py-4">
+            <RequestInvite />
+          </div> */}
         </div>
         {/* <Link
           target="_blank"

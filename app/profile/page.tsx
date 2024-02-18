@@ -7,6 +7,7 @@ import { Separator } from "@radix-ui/react-menubar"
 
 import { capitalize, humanError, isEmpty, profileUrl } from "@/lib/utils"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Toaster } from "@/components/ui/toaster"
 import About from "@/components/core/About"
 import AccessRequests from "@/components/core/AccessRequests"
 import InviteUser from "@/components/core/InviteUser"
@@ -88,6 +89,7 @@ const ProfileSettings = () => {
           <About />
         </TabsContent>
       </Tabs>
+      <Toaster />
     </div>
   )
 }

@@ -60,7 +60,7 @@ export function EndorsementsProvider({ children }: Props) {
   const getAccessRequests = async () => {
     setLoading(true)
     try {
-      const response = await authAxios.get(`/endorser/access`)
+      const response = await authAxios.get(`/endorser/requests/list`)
       setAccessRequests(response.data)
     } catch (e: any) {
       setError(humanError(e))
@@ -72,7 +72,7 @@ export function EndorsementsProvider({ children }: Props) {
   const modifyRequest = async (id: string, action: string) => {
     setLoading(true)
     try {
-      await authAxios.patch(`/endorser/access/${id}`, { action })
+      await authAxios.patch(`/endorser/requests/${id}`, { action })
     } catch (e: any) {
       setError(humanError(e))
     } finally {
@@ -81,11 +81,13 @@ export function EndorsementsProvider({ children }: Props) {
   }
 
   const acceptRequest = async (id: string) => {
-    return await modifyRequest(id, "accept")
+    await modifyRequest(id, "accept")
+    await getEndorsements()
   }
 
   const rejectRequest = async (id: string) => {
-    return await modifyRequest(id, "reject")
+    await modifyRequest(id, "reject")
+    await getEndorsements()
   }
 
   const getEndorsements = async () => {

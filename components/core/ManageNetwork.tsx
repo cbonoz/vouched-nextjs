@@ -37,10 +37,6 @@ const ManageNetwork = () => {
     return <div>Loading...</div>
   }
 
-  const filteredEndorsements = endorsements.filter(
-    (e: any) => e.userId === user.id
-  )
-
   return (
     <div>
       <div className="flex items-center space-x-4">

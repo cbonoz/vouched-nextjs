@@ -17,7 +17,7 @@ export default function RenderObject({
   className,
   style,
   key,
-  keys = Object.keys(obj),
+  keys = Object.keys(obj || {}),
 }: Props) {
   if (!obj) {
     return null

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import RenderResult from "next/dist/server/render-result"
 import { SignIn, useUser } from "@clerk/nextjs"
-import { Trash, TrashIcon } from "lucide-react"
+import { CheckCheckIcon, Trash, TrashIcon } from "lucide-react"
 
 import { capitalize, humanError, isEmpty, profileUrl } from "@/lib/utils"
 import useAuthAxios from "@/hooks/useAuthAxios"
@@ -57,18 +57,24 @@ const AccessRequests = () => {
             </div>
           )}
           {accessRequests.map((request: any) => {
+            const isApproved = !!request.approvedAt
             const actionRow = (
               // align to fill row
               <div className="flex justify-between">
-                <span>Endorsement</span>
-                <span>
-                  <Button
-                    onClick={() => acceptRequest(request.id)}
-                    className="text-green-500"
-                  >
-                    Accept request
-                  </Button>
-                </span>
+                <span>Access Request</span>
+                {!isApproved && (
+                  <span>
+                    <Button onClick={() => acceptRequest(request.id)}>
+                      Accept request
+                    </Button>
+                  </span>
+                )}
+                {isApproved && (
+                  <span className="text-green-500">
+                    Active&nbsp;
+                    <CheckCheckIcon size={24} />
+                  </span>
+                )}
                 <span>
                   <button
                     onClick={() => rejectRequest(request.id)}
@@ -83,14 +89,8 @@ const AccessRequests = () => {
             return (
               <BasicCard title={actionRow} className="p-4">
                 <RenderObject
-                  obj={endorsement}
-                  keys={[
-                    "firstName",
-                    "lastName",
-                    "message",
-                    "relationship",
-                    "createdAt",
-                  ]}
+                  obj={request}
+                  keys={["requesterEmail", "message", "createdAt"]}
                 />
               </BasicCard>
             )

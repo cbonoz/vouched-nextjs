@@ -19,8 +19,13 @@ const useAuthAxios = () => {
     }
   )
 
-  const getProfile = async (handle, type) => {
-    const res = await axiosInstance.get(`/public/profile?handle=${handle}`)
+  const getProfile = async (handle, requesterEmail) => {
+    const baseUrl = "/public/profile"
+    // add query params if set use querystring
+    const url = requesterEmail
+      ? `${baseUrl}?handle=${handle}&requesterEmail=${requesterEmail}`
+      : `${baseUrl}?handle=${handle}`
+    const res = await axiosInstance.get(url)
     return res.data
   }
 
@@ -46,6 +51,7 @@ const useAuthAxios = () => {
   return {
     getProfile,
     getUser,
+    requestAccess,
     postEndorse,
     authAxios: axiosInstance,
   }

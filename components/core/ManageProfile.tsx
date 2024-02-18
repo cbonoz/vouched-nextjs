@@ -100,7 +100,7 @@ const ManageProfile = () => {
 
       toast({
         title: "Success",
-        description: "Your request has been sent",
+        description: "Your profile has been updated",
         duration: 1500,
       })
     } catch (e) {
@@ -116,9 +116,11 @@ const ManageProfile = () => {
       ? (data.firstName + "-" + data.lastName).toLowerCase()
       : "john-doe"
 
+  const isProfileActivated = !!data.activatedAt && !!data.handle
+
   return (
     <BasicCard title="User settings" className="min-w-max p-4">
-      {data.activatedAt && data.handle && (
+      {isProfileActivated && (
         <div>
           View your profile page:{" "}
           <Link
@@ -129,7 +131,15 @@ const ManageProfile = () => {
           >
             {profileUrl(data.handle)}
           </Link>{" "}
-          (share this with others)
+          (share this link with others)
+        </div>
+      )}
+      {!isProfileActivated && !loading && (
+        <div>
+          <div className="my-4 font-bold ">
+            Your profile is not activated. Please fill out the required fields
+            and activate your profile to make it public.
+          </div>
         </div>
       )}
       {!loading && (
@@ -247,7 +257,10 @@ const ManageProfile = () => {
               className="mx-4"
               checked={!!data.activatedAt}
               onCheckedChange={() =>
-                updateField("activatedAt", data.activatedAt ? null : new Date())
+                updateField(
+                  "activatedAt",
+                  data.activatedAt ? null : new Date().getTime()
+                )
               }
             />
           </div>
