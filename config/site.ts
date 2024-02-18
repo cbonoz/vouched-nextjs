@@ -29,6 +29,8 @@ export const siteConfig = {
       "Enter endorsement message include relevant skills and how you could help someone connect with this person (ex: I worked with John for 5 years at two different startups, and he's a great manager and leader of SaaS companies. I can help you get in contact with John via email or LinkedIn on request.",
     relationship:
       "Enter relationship (ex: coworker for five years, manager, etc)",
+      skills: "Enter skills separated by a comma (ex: leadership, management, etc)",
+
   },
   tooltips: {
     endorsement: {

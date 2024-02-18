@@ -22,6 +22,7 @@ const Vouch = ({ onSubmit }: Props) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | undefined>()
   const [relationship, setRelationship] = useState("")
+  const [skills, setSkills] = useState<string>("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
 
@@ -33,6 +34,7 @@ const Vouch = ({ onSubmit }: Props) => {
     setRelationship("")
     setFirstName("")
     setLastName("")
+    setSkills("")
   }
 
   async function submitEndorsement() {
@@ -48,6 +50,7 @@ const Vouch = ({ onSubmit }: Props) => {
         relationship,
         firstName,
         lastName,
+        skills
       })
 
       toast({
@@ -89,6 +92,15 @@ const Vouch = ({ onSubmit }: Props) => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder={siteConfig.endorsementPlaceholder.message}
+        />
+
+        {/* skills  */}
+        <Label className="mb-4">Skills</Label>
+        <Input
+          className="my-4 w-full"
+          value={skills}
+          onChange={(e) => setSkills(e.target.value)}
+          placeholder={siteConfig.endorsementPlaceholder.skills}
         />
 
         <Label className="mb-4">Relationship</Label>

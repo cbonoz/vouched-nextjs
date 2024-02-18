@@ -79,6 +79,7 @@ const ManageNetwork = () => {
                     "firstName",
                     "lastName",
                     "message",
+                    "skills",
                     "relationship",
                     "createdAt",
                   ]}

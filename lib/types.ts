@@ -2,6 +2,7 @@ export interface EndorsementDto {
   firstName: string
   lastName: string
   message: string
+  skills: string
   relationship: string
 }
 
@@ -10,6 +11,7 @@ export interface Endorsement {
   firstName: string
   lastName: string
   message: string
+  skills: string
   relationship: string
   createdAt: string
   addedAt?: string
