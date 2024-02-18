@@ -13,8 +13,8 @@ const EndorsementRow = ({ endorsement }: { endorsement: Endorsement }) => {
     <BasicCard title={fullName} className="p-4">
       <div>
         <div>
-          <div className="py-2">{endorsement.message}</div>
-          <div>
+          <div className="my-2">{endorsement.message}</div>
+          <div className="my-2">
             {/* skill chips */}
             {skills.map((skill, i) => (
               <span
